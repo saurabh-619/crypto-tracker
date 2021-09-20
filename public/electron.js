@@ -25,6 +25,7 @@ const createAnElectronApp = () => {
   });
 
   win.setAutoHideMenuBar(true);
+  win.setMenuBarVisibility(false);
 
   win.loadURL(
     isDev
