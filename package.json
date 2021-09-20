@@ -1,22 +1,87 @@
 {
   "name": "crypto-tracker",
+  "productName": "Crypto Tracker",
   "version": "0.1.0",
   "private": true,
+  "description": "Crypto Tracker is a desktop application for getting realtime updates in the world of crypto.",
+  "main": "public/electron.js",
+  "homepage": "./",
   "dependencies": {
+    "@hookstate/core": "^3.0.11",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "babel-jest": "26.6.0",
+    "electron-is-dev": "^2.0.0",
+    "electron-reload": "1.5.0",
+    "framer-motion": "^4.1.17",
+    "jest": "26.6.0",
+    "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-feather": "^2.0.9",
+    "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+    "react-spinners": "^0.11.0",
+    "swr": "^1.0.1",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "react-build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "dev": "concurrently \"SET BROWSER=none&&npm run start\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron": "wait-on tcp:3000 && electron .",
+    "jest": "jest --watchAll --coverage",
+    "electron-build": "electron-builder",
+    "build": "yarn react-build && yarn electron-build",
+    "electron:build": "yarn build && electron-builder -c.extraMetadata.main=build/electron.js"
   },
+  "babel": {
+    "env": {
+      "test": {
+        "plugins": [
+          "@babel/plugin-transform-modules-commonjs"
+        ]
+      }
+    }
+  },
+  "icon": "./public/logo.ico",
+  "build": {
+    "appId": "com.cryptotracker.app",
+    "productName": "Crypto Tracker",
+    "copyright": "Copyright ©2021 ${author}",
+    "icon": "./public/logo.ico",
+    "files": [
+      "dist/**/*",
+      "build/**/*",
+      "node_modules/**/*",
+      "public/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "public"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/electron-react-boilerplate/electron-react-boilerplate.git"
+  },
+  "author": {
+    "name": "Saurabh Bomble",
+    "email": "saurabhbomble1011@gmail.com",
+    "url": "https://saurabhbomble.me/"
+  },
+  "keywords": [
+    "crypto tracker",
+    "crypto",
+    "tracker",
+    "electron",
+    "electron.js",
+    "react",
+    "sass"
+  ],
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -34,5 +99,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.1",
+    "electron": "^14.0.1",
+    "electron-builder": "^22.11.7",
+    "node-sass": "^6.0.1",
+    "sass-loader": "^12.1.0",
+    "wait-on": "^6.0.0"
   }
 }
