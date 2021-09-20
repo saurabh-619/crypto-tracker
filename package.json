@@ -36,7 +36,8 @@
     "jest": "jest --watchAll --coverage",
     "electron-build": "electron-builder",
     "build": "yarn react-build && yarn electron-build",
-    "electron:build": "yarn build && electron-builder -c.extraMetadata.main=build/electron.js"
+    "electron:build": "yarn build && electron-builder -c.extraMetadata.main=build/electron.js",
+    "web:build": "react-scripts build"
   },
   "babel": {
     "env": {
