@@ -24,6 +24,8 @@ const createAnElectronApp = () => {
     icon: path.join(__dirname, "/logo.svg"),
   });
 
+  win.setAutoHideMenuBar(true);
+
   win.loadURL(
     isDev
       ? "http://localhost:3000"
